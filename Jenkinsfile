@@ -3,12 +3,12 @@ pipeline {
   stages {
       stage('Hello') {
           steps {
-              echo 'hello from Jenkinsfile ##########111 ##############............'
+              echo 'Hello hello from Jenkinsfile ##########111 ##############............'
           }
       }
       stage('build') {
           steps {
-               echo 'hello from Jenkinsfile ##########222 ##############............'
+               echo 'build hello from Jenkinsfile ##########222 ##############............'
           }
       }
       stage('for the test branches') {
@@ -16,7 +16,7 @@ pipeline {
               branch 'test*'
           }
           steps {
-              echo 'this only runs for webhook* branches..3333### ###............'
+              echo 'this only runs for test* branches3333 ##############............'
           }
       }
   }
