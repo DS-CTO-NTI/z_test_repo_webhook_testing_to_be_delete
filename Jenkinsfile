@@ -1,22 +1,13 @@
 pipeline {
   agent any
   stages {
-      stage('Hello') {
-          steps {
-              echo 'Hello hello from Jenkinsfile ##########111 ##############............'
-          }
-      }
-      stage('build') {
-          steps {
-               echo 'build hello from Jenkinsfile ##########222 ##############............'
-          }
-      }
-      stage('for the test branches') {
+      stage('for the main branch') {
           when {
-              branch 'test*'
+              branch 'main'
           }
           steps {
-              echo 'this only runs for test* branches3333 ##############............'
+              echo 'this only runs for main branch commits'
+			  build job: 'CommonService-BuildAll', parameters: [[$class: 'StringParameterValue', name: 'buildBranch', value: NotificationService]]
           }
       }
   }
