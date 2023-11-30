@@ -7,7 +7,7 @@ pipeline {
           }
           steps {
               echo 'this only runs for main branch commits'
-			  build job: 'CommonService-BuildAll', parameters: [[$class: 'StringParameterValue', name: 'buildBranch', value: NotificationService]]
+			  build job: 'CommonService-BuildAll', parameters: [[$class: 'StringParameterValue', name: 'buildBranch', value: 'NotificationService']]
           }
       }
   }
