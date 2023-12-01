@@ -1,6 +1,6 @@
 pipeline {
   agent any
-  environement {
+  environment {
 	branchName = 'NotificationService'
   }
   stages {
