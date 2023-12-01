@@ -1,9 +1,5 @@
 pipeline {
   agent any
-  def scmVars = checkout([
-               $class : 'GitSCM',
-               branches : [[name: '*/main']]
-           ])
   stages {
       stage('for the main branch') {
           when {
