@@ -9,7 +9,6 @@ pipeline {
               branch 'main'
           }
           steps {
-			echo 
 			echo "${GIT_BRANCH}"
 			echo "${GIT_URL}"
 			echo "${GIT_COMMIT}"
