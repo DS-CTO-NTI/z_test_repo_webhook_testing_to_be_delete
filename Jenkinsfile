@@ -18,7 +18,9 @@ pipeline {
 		}
 		stage('build all for these barnches [main, NotificationService]') {
 				when {
-					branch 'main || NotificationService'
+					 expression {
+						return branch == 'main' || branch == 'NotificationService'
+					}
 				}
 				steps {
 					echo '### build for main || NotificationService branches'
