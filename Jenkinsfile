@@ -15,11 +15,11 @@ pipeline {
 		  }
 
 		  steps {
-			echo 'deploying the $env.branchName in $env.devServer environment '
-			build job: 'CommonService-BuildAll', parameters: [[$class: 'StringParameterValue', name: 'buildBranch', value: '$env.branchName']]
-			build job: 'deploy_common_services', parameters: [[$class: 'StringParameterValue', name: 'userid', value: '$env.userid'],
-															  [$class: 'StringParameterValue', name: 'password', value: '$env.password'],
-															  [$class: 'StringParameterValue', name: 'DeploymentServer', value: '$env.devServer']]
+			echo 'deploying the $env.branchName, $env.userid, $env.password in $env.devServer environment '
+			//build job: 'CommonService-BuildAll', parameters: [[$class: 'StringParameterValue', name: 'buildBranch', value: '$env.branchName']]
+			//build job: 'deploy_common_services', parameters: [[$class: 'StringParameterValue', name: 'userid', value: '$env.userid'],
+			//												  [$class: 'StringParameterValue', name: 'password', value: '$env.password'],
+			//												  [$class: 'StringParameterValue', name: 'DeploymentServer', value: '$env.devServer']]
 		  }
 		}
 		
