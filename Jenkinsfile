@@ -18,7 +18,7 @@ pipeline {
 					echo '### build for main || NotificationService branches'
 					//build job: 'CommonService-BuildAll', parameters: [[$class: 'StringParameterValue', name: 'buildBranch', value: '$env.branchName']]
 					build job: 'deploy_common_services', parameters: [[$class: 'StringParameterValue', name: 'userid', value: 'administrator'],
-																  [$class: 'StringParameterValue', name: 'password', value: '$env.password'],
+																  [$class: 'StringParameterValue', name: 'password', value: 'LnTdesPTD@2600c'],
 																  [$class: 'StringParameterValue', name: 'DeploymentServer', value: '192.168.0.125-qa-server']]
 				}
 		}
