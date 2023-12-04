@@ -2,7 +2,7 @@ pipeline {
   agent any
   environment {
 	branchName = 'NotificationService'
-	devServer = '192.168.0.125-QA'
+	devServer = '192.168.0.125-qa-server'
 	userid = 'administrator'
 	password = 'LnTdesPTD@2600c'
   }
