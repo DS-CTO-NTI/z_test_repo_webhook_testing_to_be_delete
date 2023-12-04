@@ -2,11 +2,30 @@ pipeline {
   agent any
   environment {
 	branchName = 'NotificationService'
+	devServer = '192.168.0.125-QA'
+	userid = 'administrator'
+	password = 'LnTdesPTD@2600c'
   }
   stages {
+		stage('Deployment to QA (192.168.0.125) server') {
+		  when {
+			expression {
+				return env.BRANCH_NAME == 'main' || env.BRANCH_NAME == 'NotificationService'
+			}
+		  }
+
+		  steps {
+			echo 'deploying the $env.branchName in $env.devServer environment '
+			build job: 'CommonService-BuildAll', parameters: [[$class: 'StringParameterValue', name: 'buildBranch', value: '$env.branchName']]
+			build job: 'deploy_common_services', parameters: [[$class: 'StringParameterValue', name: 'userid', value: '$env.userid'],
+															  [$class: 'StringParameterValue', name: 'password', value: '$env.password'],
+															  [$class: 'StringParameterValue', name: 'DeploymentServer', value: '$env.devServer']]
+		  }
+		}
+		
 		stage('for the main branch') {
 		  when {
-			  branch 'main'
+			  branch 'feature*'
 		  }
 
 		  steps {
@@ -19,7 +38,7 @@ pipeline {
 		stage('build all for these barnches [main, NotificationService]') {
 				when {
 					 expression {
-						return env.BRANCH_NAME == 'main' || env.BRANCH_NAME == 'NotificationService'
+						return env.BRANCH_NAME != 'main' || env.BRANCH_NAME != 'NotificationService'
 					}
 				}
 				steps {
@@ -27,7 +46,7 @@ pipeline {
 				  //build job: 'CommonService-BuildAll', parameters: [[$class: 'StringParameterValue', name: 'buildBranch', value: 'NotificationService']]
 				}
 		}
-		stage('for the feature branch') {
+		stage('for the feature branch starts with TPD') {
 				when {
 					branch 'TPD*'
 				}
