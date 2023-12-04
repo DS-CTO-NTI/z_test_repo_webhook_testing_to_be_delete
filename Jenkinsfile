@@ -9,12 +9,10 @@ pipeline {
               branch 'main'
           }
           steps {
-			echo "${GIT_BRANCH}"
-			echo "${GIT_URL}"
-			echo "${GIT_COMMIT}"
-			  echo "##### scm varaibles branch name:....... $env.branchName"
-              echo 'this only runs for main branch commits.... '
-			  build job: 'CommonService-BuildAll', parameters: [[$class: 'StringParameterValue', name: 'buildBranch', value: 'NotificationService']]
+			echo "${GIT_BRANCH}" "${GIT_COMMIT}" "${GIT_URL}" 
+		    echo "##### scm varaibles branch name:....... $env.branchName.. $env.branch"
+		    echo 'this only runs for main branch commits.... '
+			  build job: 'CommonService-BuildAll', parameters: [[$class: 'StringParameterValue', name: 'buildBranch', value: '$env.branchName']]
           }
       }
        stage('for the feature branch') {
