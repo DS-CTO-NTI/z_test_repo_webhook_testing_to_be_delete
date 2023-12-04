@@ -7,11 +7,9 @@ pipeline {
 	password = 'LnTdesPTD@2600c'
   }
   stages {
-		stage('Deployment to QA (192.168.0.125) server') {
+		stage('Deployment to QA 192.168.0.125 server') {
 		  when {
-			expression {
-				return env.BRANCH_NAME == 'main' || env.BRANCH_NAME == 'NotificationService'
-			}
+			branch 'main'
 		  }
 
 		  steps {
@@ -30,7 +28,7 @@ pipeline {
 
 		  steps {
 			echo "${GIT_BRANCH} .. ${GIT_COMMIT} .. ${GIT_URL}" 
-			echo "##### scm varaibles branch name:....... $env.branchName.. env.BRANCH_NAME"
+			echo "##### scm varaibles branch name:....... $env.branchName.. env.BRANCH_NAME.."
 			echo 'this only runs for main branch commits.... '
 			//build job: 'CommonService-BuildAll', parameters: [[$class: 'StringParameterValue', name: 'buildBranch', value: '$env.branchName']]
 		  }
