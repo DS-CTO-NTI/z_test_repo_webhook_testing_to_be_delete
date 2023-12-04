@@ -8,6 +8,9 @@ pipeline {
           when {
               branch 'main'
           }
+	    wrap([$class: 'BuildUser']) {
+		  echo "${BUILD_USER} ...."
+		}
           steps {
 			echo "${GIT_BRANCH} .. ${GIT_COMMIT} .. ${GIT_URL}" 
 			echo "${env.BUILD_USER} .."
