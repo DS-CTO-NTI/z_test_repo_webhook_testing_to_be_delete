@@ -11,7 +11,7 @@ pipeline {
 
 		  steps {
 			echo "${GIT_BRANCH} .. ${GIT_COMMIT} .. ${GIT_URL}" 
-			echo "##### scm varaibles branch name:....... $env.branchName.. "
+			echo "##### scm varaibles branch name:....... $env.branchName.. env.BRANCH_NAME"
 			echo 'this only runs for main branch commits.... '
 			//build job: 'CommonService-BuildAll', parameters: [[$class: 'StringParameterValue', name: 'buildBranch', value: '$env.branchName']]
 		  }
@@ -19,7 +19,7 @@ pipeline {
 		stage('build all for these barnches [main, NotificationService]') {
 				when {
 					 expression {
-						return branch == 'main' || branch == 'NotificationService'
+						return env.BRANCH_NAME == 'main' || env.BRANCH_NAME == 'NotificationService'
 					}
 				}
 				steps {
@@ -35,12 +35,13 @@ pipeline {
 					echo '### this only runs for main branch commits'
 				  build job: 'CommonService-BuildAll', parameters: [[$class: 'StringParameterValue', name: 'buildBranch', value: 'NotificationService']]
 				}
-		}
-		 // echo "$BUILD_USER .... $BUILD_USER_ID" // No such property: BUILD_USER for class: groovy.lang.Binding
+		  // echo "$BUILD_USER .... $BUILD_USER_ID" // No such property: BUILD_USER for class: groovy.lang.Binding
 		  //echo "${env.BUILD_USER} .." //not working null
 		  /* not working
 		  wrap([$class: 'BuildUser']) {
 			echo "$[BUILD_USER] ...."
 		  }*/
+		}
+		
   }
 }
