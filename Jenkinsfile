@@ -14,7 +14,7 @@ pipeline {
 					}
 				}
 				steps {
-					echo 'deploying the env.BRANCH_NAME $env.branchName, $env.userid, $env.password in $env.devServer environment '
+					echo 'deploying the env.BRANCH_NAME $env.branchName, $env.userid, $env.password in $env.devServer environment 123213'
 					echo '### build for main || NotificationService branches'
 					//build job: 'CommonService-BuildAll', parameters: [[$class: 'StringParameterValue', name: 'buildBranch', value: '$env.branchName']]
 					build job: 'deploy_common_services', parameters: [[$class: 'StringParameterValue', name: 'userid', value: 'administrator'],
