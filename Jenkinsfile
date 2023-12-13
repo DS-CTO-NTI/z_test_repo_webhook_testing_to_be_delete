@@ -7,14 +7,14 @@ pipeline {
 	password = 'LnTdesPTD@2600c'
   }
   stages {
-		stage('build all for these barnches [main]') {
+		stage('build all for these branches [main]') {
 				when {
 					 expression {
 						return env.BRANCH_NAME == 'main'
 					}
 				}
 				steps {
-					echo 'deploying the env.BRANCH_NAME $env.branchName, $env.userid, $env.password in $env.devServer environment updated on Dec 12 at 11am 3'
+					echo 'deploying the env.BRANCH_NAME $env.branchName, $env.userid, $env.password in $env.devServer environment'
 					echo '### build for main || NotificationService branches'
 					//build job: 'CommonService-BuildAll', parameters: [[$class: 'StringParameterValue', name: 'buildBranch', value: '$env.branchName']]
 					build job: 'deploy_common_services', parameters: [[$class: 'StringParameterValue', name: 'userid', value: 'administrator'],
