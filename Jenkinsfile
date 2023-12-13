@@ -7,10 +7,10 @@ pipeline {
 	password = 'LnTdesPTD@2600c'
   }
   stages {
-		stage('build all for these barnches [main, NotificationService]') {
+		stage('build all for these barnches [main]') {
 				when {
 					 expression {
-						return env.BRANCH_NAME == 'main' || env.BRANCH_NAME == 'NotificationService'
+						return env.BRANCH_NAME == 'main'
 					}
 				}
 				steps {
