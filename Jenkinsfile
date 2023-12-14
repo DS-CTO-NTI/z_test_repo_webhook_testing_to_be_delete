@@ -24,7 +24,7 @@ pipeline {
 		}
 		stage('Getting user name and password') {
 			steps {
-			   echo 'getting user name and password ...1234546'
+			   echo 'getting user name and password ...a b c d'
 			}
 		}
   }
